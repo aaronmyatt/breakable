@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<ul> Profile ID: <%= @profile.id %>
+  <li>Username: <%= @profile.username %></li>
+  <li>Latest Point: (<%= @profile.latest_point_lat %>, <%= @profile.latest_point_lng %>)</li>
+</ul>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>
