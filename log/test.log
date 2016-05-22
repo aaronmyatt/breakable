@@ -1,0 +1,14 @@
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (2.1ms)[0m  DROP TABLE "points" CASCADE
+  [1m[36m (3.1ms)[0m  [1mCREATE TABLE "points" ("id" serial primary key, "lat" character varying, "lng" character varying, "profile_id" integer, "note" character varying) [0m
+  [1m[35m (0.8ms)[0m  CREATE  INDEX  "index_points_on_profile_id" ON "points" USING btree ("profile_id")
+  [1m[36m (1.1ms)[0m  [1mDROP TABLE "profiles" CASCADE[0m
+  [1m[35m (2.4ms)[0m  CREATE TABLE "profiles" ("id" serial primary key, "user_id" integer, "username" character varying, "latest_point_lat" float, "latest_point_lng" float, "mapper" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mDROP TABLE "users" CASCADE[0m
+  [1m[35m (2.3ms)[0m  CREATE TABLE "users" ("id" serial primary key, "email" character varying, "password_hash" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "password_salt" character varying) 
+  [1m[36m (1.6ms)[0m  [1mALTER TABLE "points" ADD CONSTRAINT "fk_rails_025f8fae23"
+FOREIGN KEY ("profile_id")
+  REFERENCES "profiles" ("id")
+[0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
